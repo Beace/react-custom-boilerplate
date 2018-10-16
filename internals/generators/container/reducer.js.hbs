@@ -1,0 +1,19 @@
+/*
+ *
+ * {{ properCase name }} reducer
+ *
+ */
+
+import handleActions from 'utils/handleActions';
+import { DEFAULT_ACTION } from './constants';
+
+export const initialState = {};
+
+export default handleActions(
+  {
+    [DEFAULT_ACTION]() {
+      this.loading = true;
+    }
+  },
+  initialState,
+);
