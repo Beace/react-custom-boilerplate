@@ -43,28 +43,31 @@
 
 #### 关于reducer actions constants saga selectors immutable 之间的关系
 
-- [immutable](http://facebook.github.io/immutable-js) 初始化数据，并且将所有的数据都转为immutable对像，保证每次修改都是新的数据，旧数据不可变
-- constants 这里定义了一些actions的类型
-- actions 直接暴露给外界的方法，通过dispatch直接调用
-- reducer 通过action返回的类型，修改相应的数据，是最底层触发数据修改的人员
-- selectors 本质上是通过闭包来缓存数据，主要是选择数据，从相应的reducer中选取你想要的数据
-- sagas 主要是用来控制异步事件，不只是API层面的异步请求，包括用户交互页面逻辑等
+- `reducer` 中建立 `initialState` 初始化数据
+- `constants` 这里定义了一些 `actions` 的类型
+- `actions` 直接暴露给外界的方法，通过 `dispatch` 直接调用
+- `reducer` 通过 `action` 返回的类型，修改相应的数据，是最底层触发数据修改的人员
+- `selectors` 本质上是通过闭包来缓存数据，主要是选择数据，从相应的 `reducer` 中选取你想要的数据
+- `sagas` 主要是用来控制异步事件，不只是API层面的异步请求，包括用户交互页面逻辑等
 
 #### 举个例子
 
 假如，用户输入一个name，查询name的列表
 
 ```
-1. 从reducer中初始化name ->
-2. constants 定义触发获取列表的类型 GET_LIST ->
-3. actions 中定义getList方法，并且接受用户输入的参数name, 并返回给saga ->
-4. saga 接收到name参数后开始 ajax请求获取数据 调用 call 方法 ->
-5. 数据传递给reducer进行修改，因此saga进行watch了请求方法，调用takelatest方法，当ajax请求结束后告诉reducer，同时将相应的type传递给reducer ->
-6. reducer 通过类型和新的数据重新set/update数据 ->
-7. selectors 进行数据对比，获取数据 ->
-8. react开始进行diff算法，重新渲染页面
+1. 从 `reducer` 中初始化 `name` ->
+2. `constants` 定义触发获取列表的类型 `GET_LIST` ->
+3. `actions` 中定义 `getList` 方法，并且接受用户输入的参数 `name`, 并返回给 `saga` ->
+4. `saga` 接收到 `name` 参数后开始 `ajax` 请求获取数据 调用 `call` 方法 ->
+5. 数据传递给 `reducer` 进行修改，因此 `saga` 进行 `watch` 了请求方法，调用 `takelatest` 方法，当 `ajax` 请求结束后告诉 `reducer` ，同时将相应的 `type` 传递给 `reducer` ->
+6. `reducer` 通过类型和新的数据重新 `set/update` 数据 ->
+7. `selectors` 进行数据对比，获取数据 ->
+8. `react` 重新渲染页面
 ```
 
 ## TODO
 
-1. redux-auth-wrapper
+[] redux-auth-wrapper
+[] webpack progress
+[] webpack notify
+[] immer handleActions 重写
