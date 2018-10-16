@@ -54,7 +54,6 @@
 
 假如，用户输入一个name，查询name的列表
 
-```
 1. 从 `reducer` 中初始化 `name` ->
 2. `constants` 定义触发获取列表的类型 `GET_LIST` ->
 3. `actions` 中定义 `getList` 方法，并且接受用户输入的参数 `name`, 并返回给 `saga` ->
@@ -63,7 +62,7 @@
 6. `reducer` 通过类型和新的数据重新 `set/update` 数据 ->
 7. `selectors` 进行数据对比，获取数据 ->
 8. `react` 重新渲染页面
-```
+
 
 ## TODO
 
