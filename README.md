@@ -66,7 +66,7 @@
 
 ## TODO
 
-[] redux-auth-wrapper
-[] webpack progress
-[] webpack notify
-[] immer handleActions 重写
+[ ] redux-auth-wrapper
+[ ] webpack progress
+[ ] webpack notify
+[ ] immer handleActions 重写
