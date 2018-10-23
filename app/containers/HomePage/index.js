@@ -10,7 +10,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
-import { makeSelectArticle } from './selectors';
+import { makeSelectTodos } from './selectors';
 import { setTodos } from './actions';
 
 import reducer from './reducer';
@@ -19,28 +19,18 @@ import saga from './saga';
 class HomePage extends React.PureComponent {
   state = {
     value: '',
-    todos: [
-      {
-        todo: 'Learn typescript',
-        done: true,
-      },
-      {
-        todo: 'Try immer',
-        done: false,
-      },
-    ],
   };
 
   updateTodos = () => {
-    this.props.setTodos({
-      todo: 'Learn typescript',
-      done: true,
-    });
+    this.props.setTodos(this.state.value);
+  };
+
+  onChange = e => {
+    this.setState({ value: e.target.value });
   };
 
   render() {
-    const { article } = this.props;
-    console.log(this.props, this.state.todos);
+    const { todos } = this.props;
     return (
       <article>
         <Helmet>
@@ -53,6 +43,7 @@ class HomePage extends React.PureComponent {
         <div>
           <Input onChange={this.onChange} value={this.state.value} />
         </div>
+        <div>{todos.map(item => <div key={item}>{item}</div>)}</div>
         <Button onClick={this.updateTodos} type="primary">
           update todos
         </Button>
@@ -62,7 +53,7 @@ class HomePage extends React.PureComponent {
 }
 
 HomePage.propTypes = {
-  article: PropTypes.object,
+  todos: PropTypes.array,
   setTodos: PropTypes.func,
 };
 
@@ -74,7 +65,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  todos: makeSelectArticle(),
+  todos: makeSelectTodos(),
   currentUser: makeSelectCurrentUser(),
 });
 

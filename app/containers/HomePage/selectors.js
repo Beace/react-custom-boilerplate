@@ -6,7 +6,7 @@ import { createSelector } from 'reselect';
 
 const selectHome = state => state.home;
 
-const makeSelectArticle = () =>
+const makeSelectTodos = () =>
   createSelector(selectHome, homeState => homeState.todos);
 
-export { selectHome, makeSelectArticle };
+export { selectHome, makeSelectTodos };

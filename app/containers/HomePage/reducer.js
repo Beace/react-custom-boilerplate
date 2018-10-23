@@ -4,11 +4,6 @@ import { SET_TODOS } from './constants';
 
 // The initial state of the App
 export const initialState = {
-  article: {
-    loading: false,
-    data: [],
-    error: false,
-  },
   todos: [],
 };
 

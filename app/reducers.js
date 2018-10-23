@@ -27,7 +27,7 @@ const routeInitialState = {
  */
 export const routeReducer = handleActions(
   {
-    [LOCATION_CHANGE](state, action) {
+    [LOCATION_CHANGE](action) {
       this.location = action.payload;
     },
   },

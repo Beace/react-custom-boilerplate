@@ -6,8 +6,7 @@ const handleActions = (actionsMap, defaultState) => (
 ) =>
   produce(state, draft => {
     const action = actionsMap[type];
-    // console.log(action);
-    return action && action.call(draft, state, params);
+    return action && action.call(draft, params, state);
   });
 
 export default handleActions;
